@@ -27,7 +27,7 @@ namespace CL.BookShop.DALFactory
             {
                 if (_userInfoDAL==null)
                 {
-                   return  _userInfoDAL;
+                   return  _userInfoDAL= AbstractFactory.GetIUserInfoDalInstance();
                 }
                 return _userInfoDAL;
             }
@@ -35,6 +35,7 @@ namespace CL.BookShop.DALFactory
             set
             {//抽象工厂  用于创建包含UserInfoDAL实例的IUserInfoDAL接口
                 _userInfoDAL = AbstractFactory.GetIUserInfoDalInstance();
+                //_userInfoDAL =new DAL.UserInfoDAL();
             }
         }
 

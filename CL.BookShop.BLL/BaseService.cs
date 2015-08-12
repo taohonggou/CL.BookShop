@@ -23,7 +23,7 @@ namespace CL.BookShop.BLL
             SetCurrentDAL();//保证子类重写父类中的抽象方法
         }
 
-        public IQueryable<T> LoadEntities(Func<T,bool> whereLambda)
+        public IQueryable<T> LoadEntities(System.Linq.Expressions.Expression<Func<T, bool>>  whereLambda)
         {
             //this.DbSession.u
             return this.CurrentDAL.LoadEntities(whereLambda);

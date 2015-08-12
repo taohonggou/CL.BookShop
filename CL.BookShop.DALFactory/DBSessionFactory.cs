@@ -11,13 +11,14 @@ namespace CL.BookShop.DALFactory
     {
         public static IDAL.IDBSession CreateDbSession()
         {
-            IDAL.IDBSession DbSession = (IDAL.IDBSession)CallContext.GetData("dbSession");
-            if (DbSession==null)
+            IDAL.IDBSession dbSession = (IDAL.IDBSession)CallContext.GetData("dbSession");
+            if (dbSession == null)
             {
-                DbSession = new DBSession();
-                CallContext.SetData("dbSession", DbSession);
+                dbSession = new DBSession();
+                CallContext.SetData("dbSession", dbSession);
+                return dbSession;
             }
-            return DbSession;
+            return dbSession;
         }
     }
 }

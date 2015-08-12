@@ -40,9 +40,9 @@ namespace CL.BookShop.DAL
         /// </summary>
         /// <param name="whereLambda"></param>
         /// <returns></returns>
-        public IQueryable<T> LoadEntities(Func<T, bool> whereLambda)
+        public IQueryable<T> LoadEntities(System.Linq.Expressions.Expression< Func<T, bool>> whereLambda)
         {
-            return db.Set<T>().Where<T>(whereLambda).AsQueryable();
+            return db.Set<T>().Where<T>(whereLambda);
         }
 
         /// <summary>
