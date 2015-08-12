@@ -1,4 +1,5 @@
-﻿using CL.BookShop.Model;
+﻿using CL.BookShop.IBLL;
+using CL.BookShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CL.BookShop.BLL
 {
-    public class UserInfoService : BaseService<UserInfo>
+    public class UserInfoService : BaseService<UserInfo>,IUserInfoService
     {
         public override void SetCurrentDAL()
         {

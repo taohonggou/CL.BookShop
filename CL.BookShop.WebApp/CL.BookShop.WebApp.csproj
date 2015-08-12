@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +235,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +247,36 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CL.BookShop.BLL\CL.BookShop.BLL.csproj">
+      <Project>{ff64e2fc-8697-46df-a4d6-cfd94162b4e8}</Project>
+      <Name>CL.BookShop.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.Common\CL.BookShop.Common.csproj">
+      <Project>{97393a79-389a-49b1-a39b-15312075df3e}</Project>
+      <Name>CL.BookShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.DALFactory\CL.BookShop.DALFactory.csproj">
+      <Project>{af152ea5-396a-4db1-a1fc-f6db333212db}</Project>
+      <Name>CL.BookShop.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.DAL\CL.BookShop.DAL.csproj">
+      <Project>{25429e4e-104c-46b9-8b3c-4b0190bfa204}</Project>
+      <Name>CL.BookShop.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.IBLL\CL.BookShop.IBLL.csproj">
+      <Project>{6652e3c0-3197-444a-b080-ed306b83336c}</Project>
+      <Name>CL.BookShop.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.IDAL\CL.BookShop.IDAL.csproj">
+      <Project>{2147e124-0144-4d10-9c84-8657f101a0f4}</Project>
+      <Name>CL.BookShop.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.Model\CL.BookShop.Model.csproj">
+      <Project>{38ca0178-d819-4095-9f47-d407c6761230}</Project>
+      <Name>CL.BookShop.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

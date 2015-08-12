@@ -40,7 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBaseService.cs" />
+    <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CL.BookShop.DALFactory\CL.BookShop.DALFactory.csproj">
+      <Project>{af152ea5-396a-4db1-a1fc-f6db333212db}</Project>
+      <Name>CL.BookShop.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.IDAL\CL.BookShop.IDAL.csproj">
+      <Project>{2147e124-0144-4d10-9c84-8657f101a0f4}</Project>
+      <Name>CL.BookShop.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.BookShop.Model\CL.BookShop.Model.csproj">
+      <Project>{38ca0178-d819-4095-9f47-d407c6761230}</Project>
+      <Name>CL.BookShop.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

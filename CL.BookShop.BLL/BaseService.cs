@@ -11,7 +11,7 @@ namespace CL.BookShop.BLL
 
         public IDAL.IDBSession DbSession
         {
-            get { return new DALFactory.DBSession(); }
+            get { return DALFactory.DBSessionFactory.CreateDbSession(); }
         }
 
         public IDAL.IBaseDAL<T> CurrentDAL { get; set; }//表示当前数据操作类的实例
