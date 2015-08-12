@@ -29,7 +29,7 @@ namespace CL.BookShop.BLL
             return this.CurrentDAL.LoadEntities(whereLambda);
         }
 
-        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, Func<T, bool> whereLambda, Func<T, s> orderbyLambda, bool isAsc)
+        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, System.Linq.Expressions.Expression<Func<T, bool>> whereLambda, System.Linq.Expressions.Expression<Func<T, s>> orderbyLambda, bool isAsc)
         {
             return this.CurrentDAL.LoadPageEntities<s>(pageIndex, pageSize, out totalCount, whereLambda, orderbyLambda, isAsc);
         }

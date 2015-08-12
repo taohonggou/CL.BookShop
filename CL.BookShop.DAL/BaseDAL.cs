@@ -56,7 +56,7 @@ namespace CL.BookShop.DAL
         /// <param name="orderLambda"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, Func<T, bool> whereLambda, Func<T, s> orderLambda, bool isAsc)
+        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, System.Linq.Expressions.Expression<Func<T, bool>> whereLambda, System.Linq.Expressions.Expression<Func<T, s>> orderLambda, bool isAsc)
         {
             var temp = db.Set<T>().Where<T>(whereLambda);
             totalCount = temp.Count();
