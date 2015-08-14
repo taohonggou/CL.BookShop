@@ -49,5 +49,7 @@ namespace CL.BookShop.DALFactory
         {
            return  CreateInstance(DalAssemblyPath, NameSpace + ".UserInfoDAL") as IUserInfoDAL;
         }
+
+
     }
 }

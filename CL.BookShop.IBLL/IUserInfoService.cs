@@ -9,6 +9,6 @@ namespace CL.BookShop.IBLL
 {
     public  interface IUserInfoService:IBaseService<UserInfo>
     {
-
+        bool DeleteEntities(List<int> list);
     }
 }

@@ -11,6 +11,7 @@ namespace CL.BookShop.DAL
    public  class BaseDAL<T> where T :class ,new ()
     {
         DbContext db = DbContextFactory.GetCurrentDbContext();
+
         /// <summary>
         /// 添加用户
         /// </summary>
@@ -31,6 +32,7 @@ namespace CL.BookShop.DAL
         public bool DeleteEntity(T entity)
         {
             db.Entry<T>(entity).State = System.Data.Entity.EntityState.Deleted;
+            
             //return db.SaveChanges() > 0;
             return true;
         }

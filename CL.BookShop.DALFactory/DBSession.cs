@@ -56,7 +56,8 @@ namespace CL.BookShop.DALFactory
         /// <returns></returns>
         public int SaveChanges()
         {
-            return Db.SaveChanges();
+            int i = Db.SaveChanges();
+            return i;
         }
     }
 }
