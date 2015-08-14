@@ -12,23 +12,30 @@ namespace CL.BookShop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class ActionInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserInfo()
+        public ActionInfo()
         {
             this.R_UserInfo_ActionInfo = new HashSet<R_UserInfo_ActionInfo>();
+            this.ActionGroup = new HashSet<ActionGroup>();
             this.Role = new HashSet<Role>();
         }
     
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string UserPass { get; set; }
-        public System.DateTime RegTime { get; set; }
-        public string Email { get; set; }
+        public string ActionInfoName { get; set; }
+        public string Url { get; set; }
+        public short HttpMethod { get; set; }
+        public string Remark { get; set; }
+        public short DelFalg { get; set; }
+        public System.DateTime SubTime { get; set; }
+        public bool IsMenu { get; set; }
+        public int R_UserInfo_ActionInfoID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ActionGroup> ActionGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Role { get; set; }
     }

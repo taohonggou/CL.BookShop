@@ -19,6 +19,8 @@
     <script type="text/javascript">
         $(function () {
             loadData();
+            $("#addDiv").css("display", "none");
+            $("#editDiv").css("display", "none");
         });
 
         function loadData() {
@@ -51,18 +53,61 @@
 					}
                 ]],
                 toolbar: [{
-                    id: 'btnGet',
+                    id: 'btnDelete',
                     text: '删除',
                     iconCls: 'icon-remove',
                     handler: function () {
                         deleteInfo();
+                    }
+                }, {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        addInfo();
+                    }
+                }, {
+                    id: 'btnEdit',
+                    text: '编辑',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        editInfo();
                     }
                 }
                 ],
             });
         };
 
+        //添加用户
+        function addInfo() {
+            $("#addDiv").css("display", "block");
+            $('#addDiv').dialog({
+                title: "添加用户信息",
+                modal: true,
+                width: 250,
+                height: 150,
+
+                buttons: [{
+                    text: '确定',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //提交表单
+                        $("#addFrm").submit();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#addDiv').dialog('close');
+                    }
+                }]
+
+            });
+
+        }
+
+        //删除用户
         function deleteInfo() {
+            //所选行的记录数
             var rows = $('#tt').datagrid('getSelections');
             if (!rows || rows.length == 0) {
                 //alert("请选择要修改的商品！");
@@ -73,36 +118,132 @@
 
             if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
                 if (r) {
-                    //获取选中id
-                    var str = ""; 
+                //获取选中id
+                    var str = "";
                     for (var i = 0; i < rows.length; i++) {
                     str = str + rows[i].ID + ",";
-                    }
+            }
                     str = str.substr(0, str.length - 1);
-                
+
                     $.post("/UserInfo/DeleteInfo", { "strId": str }, function (data) {
                         if (data == "ok") {
-                //$.message.alert("提示", "成功", "info");
-                alert("失败");
-                        loadData();
-                        } else {
+                
+                alert("成功");
+                //loadData();
+                $("#tt").datagrid('clearSelections');
+                $("#tt").datagrid('reload');//删除后显示的是当前页面而不是第一页
+            } else {
                 //$.message.alert("提示","失败","info");
                 alert("失败");
-                        }
-                    })
-                }
+            }
+            })
+            }
             }));
 
 
         }
+
+        //添加成功后执行
+        function afterAdd(data) {
+            if (data == "1")
+            {//成功
+                $('#addDiv').dialog('close');
+                loadData();
+            } else {
+                //失败
+
+            }
+        }
+
+        //修改用户数据
+        function editInfo() {
+            //所选行的记录数
+            var rows = $('#tt').datagrid('getSelections');
+            if (rows.length!=1) {
+                $.messager.alert("提示", "只能选择1条", "error");
+                return;
+            }
+            //给文本框赋值
+            $("#userId").val(rows[0].ID);
+            $("#txtName").val(rows[0].UserName);
+            $("#txtPwd").val(rows[0].UserPass);
+            $("#txtEmail").val(rows[0].Email);
+            $("#txtRegTime").val(ChangeDateFormat(rows[0].RegTime));
+            $("#editDiv").css("display", "block");
+            $('#editDiv').dialog({
+                title: "修改用户信息",
+                modal: true,
+                width: 250,
+                height: 200,
+
+                buttons: [{
+                    text: '确定',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //这里需要校验表达
+                        //提交表单
+                        $("#editFrm").submit();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#editDiv').dialog('close');
+                    }
+                }]
+
+            });
+        }
+
+        function afterEdit(data) {
+            if (data == "1") {//成功
+                //$('#editDiv').dialog('close');
+                //loadData();
+            } else {
+                //失败
+
+            }
+        }
+
+        //将序列化成json格式后日期(毫秒数)转成日期格式
+        function ChangeDateFormat(cellval) {
+            var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            return date.getFullYear() + "-" + month + "-" + currentDate;
+        }
     </script>
-
-
-
 </head>
 <body>
     <div>
         <table id="tt"></table>
     </div>
+
+    <!-----------添加用户信息------------------------>
+    <div id="addDiv">
+        @using (Ajax.BeginForm("AddInfo", new { }, new AjaxOptions() { Confirm = "确定提交吗", HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "addFrm" }))
+        {
+            <table>
+                <tr><td>用户名</td><td><input type="text" name="UserName" /></td></tr>
+                <tr><td>密码</td><td><input type="text" name="UserPass" /></td></tr>
+                <tr><td>邮箱</td><td><input type="text" name="Email" /></td></tr>
+            </table>
+        }
+
+    </div>
+
+    <!-----------添加用户信息------------------------>
+    <div id="editDiv">
+        @using (Ajax.BeginForm("EditInfo", new { }, new AjaxOptions() { Confirm = "确定提交吗", HttpMethod = "post", OnSuccess = "afterEdit" }, new { id = "editFrm" }))
+        {
+            <table>
+                <tr><td>用户名</td><td><input type="hidden" name="ID" id="userId" /><input type="text" name="UserName" id="txtName" /></td></tr>
+                <tr><td>密码</td><td><input type="text" name="UserPass" id="txtPwd" /></td></tr>
+                <tr><td>邮箱</td><td><input type="text" name="Email" id="txtEmail" /></td></tr>
+                <tr><td>时间</td><td><input type="text" name="RegTime" id="txtRegTime" /></td></tr>
+            </table>
+        }
+
+    </div>
+
 </body>
 </html>

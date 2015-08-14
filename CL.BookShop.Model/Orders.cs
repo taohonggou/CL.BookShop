@@ -12,24 +12,23 @@ namespace CL.BookShop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class Orders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserInfo()
+        public Orders()
         {
-            this.R_UserInfo_ActionInfo = new HashSet<R_UserInfo_ActionInfo>();
-            this.Role = new HashSet<Role>();
+            this.OrderBook = new HashSet<OrderBook>();
         }
     
-        public int ID { get; set; }
-        public string UserName { get; set; }
-        public string UserPass { get; set; }
-        public System.DateTime RegTime { get; set; }
-        public string Email { get; set; }
+        public string OrderId { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public int UserId { get; set; }
+        public decimal TotalPrice { get; set; }
+        public string PostAddress { get; set; }
+        public int state { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Role { get; set; }
+        public virtual ICollection<OrderBook> OrderBook { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

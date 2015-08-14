@@ -20,7 +20,7 @@ namespace CL.BookShop.DAL
         /// <returns></returns>
         public static DbContext GetCurrentDbContext()
         {
-            DbContext dbContext = (DbContext)CallContext.GetData("dbConext");
+            DbContext dbContext = (DbContext)CallContext.GetData("dbContext");
             if (dbContext==null)
             {
                 dbContext = new book_shop3Entities();

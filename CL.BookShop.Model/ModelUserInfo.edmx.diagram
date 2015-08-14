@@ -4,8 +4,45 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="690cdbed28914737aa43e6bcf3d50cce" Name="Diagram1">
+      <Diagram DiagramId="690cdbed28914737aa43e6bcf3d50cce" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="book_shop3Model.UserInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="book_shop3Model.ActionGroup" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="book_shop3Model.ActionInfo" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="book_shop3Model.Articel_Words" Width="1.5" PointX="9.875" PointY="8" />
+        <EntityTypeShape EntityType="book_shop3Model.BookComment" Width="1.5" PointX="11.875" PointY="8" />
+        <EntityTypeShape EntityType="book_shop3Model.Books" Width="1.5" PointX="10.125" PointY="2.75" />
+        <EntityTypeShape EntityType="book_shop3Model.Cart" Width="1.5" PointX="12.375" PointY="3.875" />
+        <EntityTypeShape EntityType="book_shop3Model.Categories" Width="1.5" PointX="7.875" PointY="4.125" />
+        <EntityTypeShape EntityType="book_shop3Model.CheckEmail" Width="1.5" PointX="7.875" PointY="11" />
+        <EntityTypeShape EntityType="book_shop3Model.Department" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="book_shop3Model.keyWordsRank" Width="1.5" PointX="13.875" PointY="7" />
+        <EntityTypeShape EntityType="book_shop3Model.OrderBook" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="book_shop3Model.Orders" Width="1.5" PointX="10.125" PointY="19.375" />
+        <EntityTypeShape EntityType="book_shop3Model.Publishers" Width="1.5" PointX="7.875" PointY="1.125" />
+        <EntityTypeShape EntityType="book_shop3Model.R_UserInfo_ActionInfo" Width="1.5" PointX="7.5" PointY="6.5" />
+        <EntityTypeShape EntityType="book_shop3Model.Role" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="book_shop3Model.SearchDetails" Width="1.5" PointX="9.875" PointY="11" />
+        <EntityTypeShape EntityType="book_shop3Model.Settings" Width="1.5" PointX="11.875" PointY="11" />
+        <EntityTypeShape EntityType="book_shop3Model.sysdiagrams" Width="1.5" PointX="13.875" PointY="10" />
+        <EntityTypeShape EntityType="book_shop3Model.SysFun" Width="1.5" PointX="14.875" PointY="2" />
+        <EntityTypeShape EntityType="book_shop3Model.Users" Width="1.5" PointX="7.875" PointY="19.125" />
+        <EntityTypeShape EntityType="book_shop3Model.UserStates" Width="1.5" PointX="5.625" PointY="19.875" />
+        <EntityTypeShape EntityType="book_shop3Model.VidoFile" Width="1.5" PointX="4.875" PointY="12" />
+        <AssociationConnector Association="book_shop3Model.FK_R_UserInfo_ActionInfoActionInfo" />
+        <AssociationConnector Association="book_shop3Model.FK_Book_Category" />
+        <AssociationConnector Association="book_shop3Model.FK_Books_Publishers" />
+        <AssociationConnector Association="book_shop3Model.FK_Cart_Books" />
+        <AssociationConnector Association="book_shop3Model.FK_OrderBook_Book" />
+        <AssociationConnector Association="book_shop3Model.FK_Cart_Users" />
+        <AssociationConnector Association="book_shop3Model.FK_OrderBook_Order" />
+        <AssociationConnector Association="book_shop3Model.FK_Order_User" />
+        <AssociationConnector Association="book_shop3Model.FK_UserInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="book_shop3Model.FK_Users_UserStates" />
+        <AssociationConnector Association="book_shop3Model.ActionGroupActionInfo" />
+        <AssociationConnector Association="book_shop3Model.RoleActionGroup" />
+        <AssociationConnector Association="book_shop3Model.RoleActionInfo" />
+        <AssociationConnector Association="book_shop3Model.RoleDepartment" />
+        <AssociationConnector Association="book_shop3Model.UserInfoRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

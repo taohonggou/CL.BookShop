@@ -51,6 +51,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionGroup.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActionInfo.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Articel_Words.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookComment.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Books.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Categories.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheckEmail.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="keyWordsRank.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelUserInfo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,8 +96,44 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelUserInfo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OrderBook.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publishers.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_ActionInfo.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDetails.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysFun.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserInfo.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserStates.cs">
+      <DependentUpon>ModelUserInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VidoFile.cs">
       <DependentUpon>ModelUserInfo.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CL.BookShop.Model;
 
 namespace CL.BookShop.WebApp.Controllers
 {
@@ -13,9 +14,7 @@ namespace CL.BookShop.WebApp.Controllers
         // GET: UserInfo
         public ActionResult Index()
         {
-            //IBLL.IUserInfoService userInfoService = new BLL.UserInfoService();
-            //var users = userInfoService.LoadEntities(c => true);
-            //ViewData.Model = users;
+            
             return View();
         }
 
@@ -30,18 +29,18 @@ namespace CL.BookShop.WebApp.Controllers
             if (!int.TryParse(Request["page"], out pageIndex))
             {
                 pageIndex = 1;
-                
+
             }
-            if (!int.TryParse(Request["rows"],out pageSize))
+            if (!int.TryParse(Request["rows"], out pageSize))
             {
                 pageSize = 5;
             }
-            
+
             int totalCount;
-            var users= userInfoService.LoadPageEntities<int>(pageIndex, pageSize, out totalCount, u => true, u => u.ID, true);
+            var users = userInfoService.LoadPageEntities<int>(pageIndex, pageSize, out totalCount, u => true, u => u.ID, true);
             var rows = from u in users
                        select new { ID = u.ID, UserName = u.UserName, UserPass = u.UserPass, Email = u.Email, RegTime = u.RegTime };
-            return Json(new {total=totalCount,rows=rows },JsonRequestBehavior.AllowGet);
+            return Json(new { total = totalCount, rows = rows }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace CL.BookShop.WebApp.Controllers
             string strId = Request["strId"];
             string[] strs = strId.Split(',');
             List<int> list = new List<int>();
-            foreach (string  Id in strs)
+            foreach (string Id in strs)
             {
                 list.Add(Convert.ToInt32(Id));
             }
@@ -67,5 +66,36 @@ namespace CL.BookShop.WebApp.Controllers
                 return Content("no");
             }
         }
+
+        /// <summary>
+        /// 成功返回1  失败返回0
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public ActionResult AddInfo(UserInfo userInfo)
+        {
+            userInfo.RegTime = DateTime.Now;
+            UserInfo user = userInfoService.AddEntity(userInfo);
+            if (user != null)
+            {
+                Response.Write("1");
+                return RedirectToAction("Index");
+                //return Content("1");
+            }
+            else
+            {
+                return Content("0");
+            }
+        }
+
+        public ActionResult EditInfo(UserInfo user)
+        {
+            if (userInfoService.UpdateEntity(user))
+            {
+                Response.Write("1");
+                return RedirectToAction("Index");
+            }
+            return Content("0");
+        }
     }
-} 
+}
