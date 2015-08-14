@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CL.BookShop.Model;
-using CL.BookShop.IDAL;
+﻿using CL.BookShop.IDAL;
 using CL.BookShop.DAL;
 using System.Data.SqlClient;
 using System.Data.Entity;
@@ -14,30 +8,30 @@ namespace CL.BookShop.DALFactory
     /// <summary>
     /// 数据访问会话层，赋值创建所有的数据操作类对象，业务层只要获取到DBSession，就拿到了所有的数据操作类的实例，让业务层与数据层解耦
     /// </summary>
-     public class DBSession:IDBSession
+    public partial class DBSession:IDBSession
     {
-        //DbContext db = new book_shop3Entities();
-
+        //获得当前上下文对象
         public DbContext Db { get { return DbContextFactory.GetCurrentDbContext(); } }
-        private IUserInfoDAL _userInfoDAL;
 
-        public IUserInfoDAL UserInfoDAL
-        {
-            get
-            {
-                if (_userInfoDAL==null)
-                {
-                   return  _userInfoDAL= AbstractFactory.GetIUserInfoDalInstance();
-                }
-                return _userInfoDAL;
-            }
+        
 
-            set
-            {//抽象工厂  用于创建包含UserInfoDAL实例的IUserInfoDAL接口
-                _userInfoDAL = AbstractFactory.GetIUserInfoDalInstance();
-                //_userInfoDAL =new DAL.UserInfoDAL();
-            }
-        }
+        //public IUserInfoDAL UserInfoDAL
+        //{
+        //    get
+        //    {
+        //        if (_userInfoDAL==null)
+        //        {
+        //           _userInfoDAL= AbstractFactory.GetIUserInfoDalInstance();
+        //        }
+        //        return _userInfoDAL;
+        //    }
+
+        //    set
+        //    {//抽象工厂  用于创建包含UserInfoDAL实例的IUserInfoDAL接口
+        //        _userInfoDAL = AbstractFactory.GetIUserInfoDalInstance();
+        //        //_userInfoDAL =new DAL.UserInfoDAL();
+        //    }
+        //}
 
         /// <summary>
         /// 执行sql语句  特殊的

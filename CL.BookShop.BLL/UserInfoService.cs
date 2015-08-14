@@ -1,14 +1,10 @@
 ﻿using CL.BookShop.IBLL;
 using CL.BookShop.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CL.BookShop.BLL
 {
-    public class UserInfoService : BaseService<UserInfo>,IUserInfoService
+    public partial class UserInfoService : BaseService<UserInfo>,IUserInfoService
     {
         /// <summary>
         /// 批量删除用户数据
@@ -25,11 +21,6 @@ namespace CL.BookShop.BLL
             return  this.DbSession.SaveChanges()>0;
         }
 
-        public override void SetCurrentDAL()
-        {
-            CurrentDAL = this.DbSession.UserInfoDAL;
-        }
-
-
+        
     }
 }

@@ -43,7 +43,6 @@ namespace CL.BookShop.Model
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<SearchDetails> SearchDetails { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<SysFun> SysFun { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserStates> UserStates { get; set; }

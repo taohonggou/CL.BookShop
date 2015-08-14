@@ -1,0 +1,74 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF.Utility.CS.ttinclude"#><#@
+ output extension=".cs"#>
+ 
+<#
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\CL.BookShop.Model\\ModelUserInfo.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+#>
+
+using System.Configuration;
+using System.Reflection;
+using CL.BookShop.IDAL;
+
+namespace CL.BookShop.DALFactory
+{
+    /// <summary>
+    /// 抽象共厂：完成对象创建（反射）
+    /// </summary>
+    public partial class AbstractFactory
+    {
+        /// <summary>
+        /// 程序集名称
+        /// </summary>
+        private static readonly string DalAssemblyPath = ConfigurationManager.AppSettings["DalAssemblyPath"];
+
+        /// <summary>
+        /// 命名空间
+        /// </summary>
+        private static readonly string NameSpace = ConfigurationManager.AppSettings["NameSpace"];
+
+        /// <summary>
+        /// 根据程序集名称，跟传入的类名，放回对应的类实例
+        /// </summary>
+        /// <param name="assemblyPath">程序集名称</param>
+        /// <param name="fullClassName">类全名</param>
+        /// <returns></returns>
+        private static object CreateInstance(string assemblyPath,string fullClassName)
+        {
+            //加载程序集
+            var assembly = Assembly.Load(assemblyPath);
+            //返回程序集下的类
+            return assembly.CreateInstance(fullClassName, true);
+
+        }
+<#
+// Emit Entity Types
+
+foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+    //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
+    //BeginNamespace(namespaceName, code);    
+#>
+		/// <summary>
+        /// 返回一个包含<#=entity.Name#>DAL实例的I<#=entity.Name#>DAL接口
+        /// </summary>
+        /// <returns></returns>
+        public static  I<#=entity.Name#>DAL GetI<#=entity.Name#>DALInstance()
+        {
+           return  CreateInstance(DalAssemblyPath, NameSpace + ".<#=entity.Name#>DAL") as I<#=entity.Name#>DAL;
+        }
+<#}#>
+	}	
+}

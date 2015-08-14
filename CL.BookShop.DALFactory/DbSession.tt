@@ -1,0 +1,56 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF.Utility.CS.ttinclude"#><#@
+ output extension=".cs"#>
+ 
+<#
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\CL.BookShop.Model\\ModelUserInfo.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+#>
+
+using CL.BookShop.IDAL;
+using CL.BookShop.DAL;
+using System.Data.SqlClient;
+using System.Data.Entity;
+
+namespace CL.BookShop.DALFactory
+{
+    /// <summary>
+    /// 数据访问会话层，赋值创建所有的数据操作类对象，业务层只要获取到DBSession，就拿到了所有的数据操作类的实例，让业务层与数据层解耦
+    /// </summary>
+    public partial class DBSession:IDBSession
+    {
+<#
+// Emit Entity Types
+
+foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+    //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
+    //BeginNamespace(namespaceName, code);    
+#>	
+		private I<#=entity.Name#>DAL _<#=entity.Name#>DAL;
+        public I<#=entity.Name#>DAL <#=entity.Name#>DAL
+        {
+            get
+            {
+                if(_<#=entity.Name#>DAL == null)
+                {
+                    _<#=entity.Name#>DAL = AbstractFactory.GetI<#=entity.Name#>DALInstance();
+                }
+                return _<#=entity.Name#>DAL;
+            }
+            set { _<#=entity.Name#>DAL = value; }
+        }
+<#}#>
+	}	
+}
