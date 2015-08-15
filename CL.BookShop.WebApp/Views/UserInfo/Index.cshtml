@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -127,7 +126,7 @@
 
                     $.post("/UserInfo/DeleteInfo", { "strId": str }, function (data) {
                         if (data == "ok") {
-                
+
                 alert("成功");
                 //loadData();
                 $("#tt").datagrid('clearSelections');
@@ -145,13 +144,13 @@
 
         //添加成功后执行
         function afterAdd(data) {
-            if (data == "1")
-            {//成功
+            if (data.result == "1") {//成功
+                alert("添加成功");
                 $('#addDiv').dialog('close');
                 loadData();
             } else {
                 //失败
-
+                alert("添加失败");
             }
         }
 
@@ -159,7 +158,7 @@
         function editInfo() {
             //所选行的记录数
             var rows = $('#tt').datagrid('getSelections');
-            if (rows.length!=1) {
+            if (rows.length != 1) {
                 $.messager.alert("提示", "只能选择1条", "error");
                 return;
             }
@@ -220,7 +219,7 @@
 
     <!-----------添加用户信息------------------------>
     <div id="addDiv">
-        @using (Ajax.BeginForm("AddInfo", new { }, new AjaxOptions() { Confirm = "确定提交吗", HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "addFrm" }))
+        @using (Ajax.BeginForm("AddInfo", "UserInfo",null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "afterAdd" }, new { id = "addFrm" }))
         {
             <table>
                 <tr><td>用户名</td><td><input type="text" name="UserName" /></td></tr>

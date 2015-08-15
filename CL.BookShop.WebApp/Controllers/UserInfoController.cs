@@ -72,20 +72,24 @@ namespace CL.BookShop.WebApp.Controllers
         /// </summary>
         /// <param name="userInfo"></param>
         /// <returns></returns>
-        public ActionResult AddInfo(UserInfo userInfo)
+        public JsonResult AddInfo(UserInfo userInfo)
         {
             userInfo.RegTime = DateTime.Now;
             UserInfo user = userInfoService.AddEntity(userInfo);
+            JsonResult json = new JsonResult();
             if (user != null)
             {
-                Response.Write("1");
-                return RedirectToAction("Index");
-                //return Content("1");
+                //Response.Write("1");
+                //return RedirectToAction("Index");
+                ////return Content("1");
+                json.Data = new { result = "1" };
             }
             else
             {
-                return Content("0");
+                //return Content("0");
+                json.Data = new { result = "0"};
             }
+            return json;
         }
 
         public ActionResult EditInfo(UserInfo user)
