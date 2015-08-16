@@ -12,27 +12,8 @@ namespace CL.BookShop.DALFactory
     {
         //获得当前上下文对象
         public DbContext Db { get { return DbContextFactory.GetCurrentDbContext(); } }
-
         
-
-        //public IUserInfoDAL UserInfoDAL
-        //{
-        //    get
-        //    {
-        //        if (_userInfoDAL==null)
-        //        {
-        //           _userInfoDAL= AbstractFactory.GetIUserInfoDalInstance();
-        //        }
-        //        return _userInfoDAL;
-        //    }
-
-        //    set
-        //    {//抽象工厂  用于创建包含UserInfoDAL实例的IUserInfoDAL接口
-        //        _userInfoDAL = AbstractFactory.GetIUserInfoDalInstance();
-        //        //_userInfoDAL =new DAL.UserInfoDAL();
-        //    }
-        //}
-
+        
         /// <summary>
         /// 执行sql语句  特殊的
         /// </summary>

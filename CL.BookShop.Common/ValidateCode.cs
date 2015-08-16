@@ -9,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace C.BookShop.Common
+namespace CL.BookShop.Common
 {
    public class ValidateCode
     {
         public ValidateCode()
         {
         }
+       
         /// <summary>
         /// 验证码的最大长度
         /// </summary>
@@ -23,6 +24,7 @@ namespace C.BookShop.Common
         {
             get { return 10; }
         }
+       
         /// <summary>
         /// 验证码的最小长度
         /// </summary>
@@ -30,6 +32,7 @@ namespace C.BookShop.Common
         {
             get { return 1; }
         }
+       
         /// <summary>
         /// 生成验证码
         /// </summary>
@@ -73,6 +76,7 @@ namespace C.BookShop.Common
             }
             return validateNumberStr;
         }
+      
         /// <summary>
         /// 创建验证码的图片
         /// </summary>
@@ -124,6 +128,7 @@ namespace C.BookShop.Common
                 image.Dispose();
             }
         }
+       
         /// <summary>
         /// 得到验证码图片的长度
         /// </summary>
@@ -133,6 +138,7 @@ namespace C.BookShop.Common
         {
             return (int)(validateNumLength * 12.0);
         }
+       
         /// <summary>
         /// 得到验证码的高度
         /// </summary>
@@ -142,11 +148,8 @@ namespace C.BookShop.Common
             return 22.5;
         }
 
-
-
-        //C# MVC 升级版
         /// <summary>
-        /// 创建验证码的图片
+        /// 创建验证码的图片 C# MVC 升级版
         /// </summary>
         /// <param name="containsPage">要输出到的page对象</param>
         /// <param name="validateNum">验证码</param>
